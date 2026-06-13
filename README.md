@@ -1,6 +1,8 @@
 <div align="center">
 <h2>A Smooth Decoupling Strategy based on Shared Prior for Compressed Image Super-Resolution</h2>
 
+🚩 Accepted by ICME 2026(Spotlight)
+
 <!-- <a href="#"><img src="https://img.shields.io/badge/Paper-PDF-red"></a> -->
 <a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache--2.0-green"></a>
 
