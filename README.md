@@ -39,8 +39,8 @@ The overall pipeline contains two progressive restoration stages:
 
 Please prepare the following models before training or testing:
 
-- Stable Diffusion 2.1 base: download from Hugging Face and set [`--pretrained_model_path`](https://huggingface.co/stabilityai/stable-diffusion-2-1-base).
-- RAM image tagging model: place [`ram_swin_large_14m.pth`](https://huggingface.co/spaces/xinyu1205/recognize-anything/blob/main/ram_swin_large_14m.pth) under the RAM model path used in `ram/`.
+- Download the pretrained SD-2.1-base models from [HuggingFace](https://huggingface.co/stabilityai/stable-diffusion-2-1-base).
+- Download the RAM model from [HuggingFace](https://huggingface.co/spaces/xinyu1205/recognize-anything/blob/main/ram_swin_large_14m.pth) and save the model to the [folder](src/ram_pretrain_model).
 - DiffCSR checkpoint: set the checkpoint path in `preset/models` before inference from [BaiduNetdisk(pwd:diff)].
 
 Recommended local structure:
