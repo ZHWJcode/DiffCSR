@@ -11,19 +11,17 @@ Wenjian Zhang<sup>1</sup> | Jiawei Wu<sup>1</sup> | Zhi Jin<sup>1,*</sup>
 <sup>1</sup>School of Intelligent Systems Engineering, Shenzhen Campus of Sun Yat-sen University, Shenzhen, China
 </div>
 
-⏰ ## Update
----
-
-- Code and checkpoints will be organized for public release.
 - This repository contains the implementation of DiffCSR for compressed image super-resolution.
 
-## TODO
+⏰ TODO
+---
 
 - [x] Release training and testing code
 - [x] Release pretrained DiffCSR checkpoints
 - [ ] Add paper and project links after publication
 
-## Framework Overview
+🌟 Framework Overview
+---
 
 The overall pipeline contains two progressive restoration stages:
 
@@ -37,7 +35,8 @@ The overall pipeline contains two progressive restoration stages:
 </p>
 -->
 
-## Pretrained Models
+⚙ Pretrained Models
+---
 
 Please prepare the following models before training or testing:
 
@@ -76,7 +75,8 @@ UCSR/
     Manga109/
 ```
 
-## Citation
+✏️ Citation
+---
 
 If this work is helpful to your research, please consider citing:
 
@@ -90,18 +90,12 @@ If this work is helpful to your research, please consider citing:
 
 Please update the BibTeX entry with the final venue and page information after publication.
 
-## Acknowledgement
+👍 Acknowledgement
+---
 
-This project builds on the progress of diffusion-based image restoration and super-resolution methods, including Stable Diffusion, OSEDiff, PiSA-SR, SeeSR, RAM, and related compressed image restoration benchmarks. We thank the authors for their excellent open-source contributions.
+This project builds on the progress of diffusion-based image restoration and super-resolution methods, including UCIP, OSEDiff, PiSA-SR, RAM, and related compressed image restoration benchmarks. We thank the authors for their excellent open-source contributions.
 
 ## License
 
 This project is released under the [Apache 2.0 license](LICENSE).
 
-## Contact
-
-For questions, please contact:
-
-- Wenjian Zhang: zhangwj289@mail2.sysu.edu.cn
-- Jiawei Wu: wujw97@mail2.sysu.edu.cn
-- Zhi Jin: jinzh26@mail.sysu.edu.cn
