@@ -6,7 +6,7 @@
 <!-- <a href="#"><img src="https://img.shields.io/badge/Paper-PDF-red"></a> -->
 <a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache--2.0-green"></a>
 
-Wenjian Zhang<sup>1</sup> | Jiawei Wu<sup>1</sup> | Zhi Jin<sup>1,*</sup>
+[Wenjian Zhang](https://scholar.google.com/citations?user=w3H4nRoAAAAJ&hl=zh-CN)<sup>1</sup> | Jiawei Wu<sup>1</sup> | Zhi Jin<sup>1</sup>
 
 <sup>1</sup>School of Intelligent Systems Engineering, Shenzhen Campus of Sun Yat-sen University, Shenzhen, China
 </div>
