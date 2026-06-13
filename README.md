@@ -11,7 +11,8 @@ Wenjian Zhang<sup>1</sup> | Jiawei Wu<sup>1</sup> | Zhi Jin<sup>1,*</sup>
 <sup>1</sup>School of Intelligent Systems Engineering, Shenzhen Campus of Sun Yat-sen University, Shenzhen, China
 </div>
 
-## Update
+⏰ ## Update
+---
 
 - Code and checkpoints will be organized for public release.
 - This repository contains the implementation of DiffCSR for compressed image super-resolution.
