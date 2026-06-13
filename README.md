@@ -31,7 +31,7 @@ The overall pipeline contains two progressive restoration stages:
 
 <!-- Add the paper framework figure here after preparing GitHub assets, for example:
 <p align="center">
-  <img src="assets/framework.png" alt="DiffCSR framework" width="850">
+  <img src="src/framework.png" alt="DiffCSR framework" width="850">
 </p>
 -->
 
