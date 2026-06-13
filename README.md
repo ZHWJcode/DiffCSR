@@ -8,7 +8,7 @@
 
 [Wenjian Zhang](https://scholar.google.com/citations?user=w3H4nRoAAAAJ&hl=zh-CN)<sup>1</sup> | Jiawei Wu<sup>1</sup> | Zhi Jin<sup>1</sup>
 
-<sup>1</sup>School of Intelligent Systems Engineering, Shenzhen Campus of Sun Yat-sen University, Shenzhen, China
+<sup>1</sup>Shenzhen Campus of Sun Yat-sen University
 </div>
 
 - This repository contains the implementation of DiffCSR for compressed image super-resolution.
