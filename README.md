@@ -39,17 +39,18 @@ The overall pipeline contains two progressive restoration stages:
 
 Please prepare the following models before training or testing:
 
-- Stable Diffusion 2.1 base: download from Hugging Face and set `--pretrained_model_path`.
-- RAM image tagging model: place `ram_swin_large_14m.pth` under the RAM model path used in `src/train_universal_v9.py`.
-- DiffCSR checkpoint: set the checkpoint path in `src/test_universal_v9.py` before inference.
+- Stable Diffusion 2.1 base: download from Hugging Face and set [`--pretrained_model_path`](https://huggingface.co/stabilityai/stable-diffusion-2-1-base).
+- RAM image tagging model: place [`ram_swin_large_14m.pth`](https://huggingface.co/spaces/xinyu1205/recognize-anything/blob/main/ram_swin_large_14m.pth) under the RAM model path used in `ram/`.
+- DiffCSR checkpoint: set the checkpoint path in `preset/models` before inference from [BaiduNetdisk(pwd:diff)].
 
 Recommended local structure:
 
 ```text
-pretrained/
+huggingface/
   stable-diffusion-2-1-base/
+ram/
   ram_swin_large_14m.pth
-checkpoints/
+preset/models
   diffcsr.pkl
 ```
 
@@ -66,10 +67,16 @@ UCSR/
   Test/
     BSD100/
       HR/
-      LR_JPEG/10/
-      LR_JPEG/40/
-      LR_PSNR/2/
-      LR_HIFI/high/
+      LR_JPEG/
+        10/
+        20/
+        ...
+      LR_JPEG/
+        40/
+      LR_PSNR/
+        2/
+      LR_HIFI/
+        high/
     Urban100/
     Manga109/
 ```
