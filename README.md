@@ -29,11 +29,10 @@ The overall pipeline contains two progressive restoration stages:
 2. SR stage: builds on the CAR output and generates high-frequency details for 4x super-resolution.
 3. PSM: uses structural information from the CAR latent to modulate UNet up-block features during the SR stage.
 
-<!-- Add the paper framework figure here after preparing GitHub assets, for example:
+<!-- Add the paper framework figure here after preparing GitHub assets, for example: -->
 <p align="center">
   <img src="figs/framework.png" alt="DiffCSR framework" width="850">
 </p>
--->
 
 ⚙ Pretrained Models
 ---
