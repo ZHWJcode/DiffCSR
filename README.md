@@ -48,7 +48,7 @@ Recommended local structure:
 ```text
 huggingface/
   stable-diffusion-2-1-base/
-ram/
+src/ram_pretrianmodel/
   ram_swin_large_14m.pth
 preset/models
   diffcsr.pkl
@@ -56,7 +56,7 @@ preset/models
 
 ## Dataset Preparation
 
-DiffCSR is trained and evaluated on the UCSR benchmark. The test split includes BSD100, Urban100, and Manga109, and the code also supports Set5 and Set14.
+DiffCSR is trained and evaluated on the [UCIP](https://lixinustc.github.io/UCIP.github.io/) benchmark. The test split includes Set5, Set14, BSD100, Urban100, and Manga109.
 
 Expected benchmark organization:
 
@@ -65,7 +65,7 @@ UCSR/
   Train/
     ...
   Test/
-    BSD100/
+    Set5/
       HR/
       LR_JPEG/
         10/
@@ -77,6 +77,8 @@ UCSR/
         2/
       LR_HIFI/
         high/
+    Set14/
+    BSD100/
     Urban100/
     Manga109/
 ```
@@ -99,7 +101,7 @@ Please update the BibTeX entry with the final venue and page information after p
 👍 Acknowledgement
 ---
 
-This project builds on the progress of diffusion-based image restoration and super-resolution methods, including UCIP, OSEDiff, PiSA-SR, RAM, and related compressed image restoration benchmarks. We thank the authors for their excellent open-source contributions.
+This project builds on the progress of diffusion-based image restoration and super-resolution methods, including [UCIP](https://lixinustc.github.io/UCIP.github.io/), [OSEDiff](https://github.com/cswry/OSEDiff), [PiSA-SR](https://github.com/csslc/PiSA-SR), and related compressed image restoration benchmarks. We thank the authors for their excellent open-source contributions.
 
 ## License
 
