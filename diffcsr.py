@@ -272,18 +272,17 @@ class DiffCSR(torch.nn.Module):
     def register_hook_unet(self):
         #  register hook
         self.norm1 = Normalize2(in_channels=1280); self.norm2 = Normalize2(in_channels=640); self.norm3 = Normalize2(in_channels=320)
+        self.hook_guidance = None; self.modulation = None
         if len(self.unet.up_blocks) == 4:
-            self.hook_guidance = None
             self.unet.up_blocks[1].register_forward_hook(self.hook_guidance_for_sr)
             self.unet.up_blocks[2].register_forward_hook(self.hook_guidance_for_sr)
             self.unet.up_blocks[3].register_forward_hook(self.hook_guidance_for_sr)
         else:
-            self.hook_guidance = None
             self.unet.up_blocks[-1].register_forward_hook(self.hook_guidance_for_sr)
     
     def hook_guidance_for_sr(self, module, args, output):
-        if self.hook_guidance is not None:
-            modulation = self.psm(z_guidance=self.hook_guidance)
+        if self.modulation is not None:
+            modulation = self.modulation
 
             if output.shape[1] == modulation['scale1'].shape[1]:  # (chans=1280)
                 output_norm = self.norm1(output)
@@ -329,21 +328,22 @@ class DiffCSR(torch.nn.Module):
 
         x_denoised = None
         if stage == 'cr':
-            self.hook_guidance = None
+            self.hook_guidance = None; self.modulation = None
             z_cr = self.unet(encoded_control, self.timesteps1, encoder_hidden_states=pos_caption_enc.to(torch.float32),).sample
             x_denoised = encoded_control - z_cr
         elif stage == 'sr':
             with torch.no_grad():
                 self.unet.set_adapter(["default_encoder_cr", "default_decoder_cr", "default_others_cr"])
-                self.hook_guidance = None
+                self.hook_guidance = None; self.modulation = None
                 z_cr = self.unet(encoded_control, self.timesteps1, encoder_hidden_states=pos_caption_enc.to(torch.float32),).sample
                 x_denoised = encoded_control - z_cr
 
             self.hook_guidance = x_denoised
+            self.modulation = self.psm(z_guidance=self.hook_guidance)
             self.unet.set_adapter(["default_encoder_sr", "default_decoder_sr", "default_others_sr"])
             z_sr = self.unet(x_denoised, self.timesteps1, encoder_hidden_states=pos_caption_enc.to(torch.float32),).sample
             x_denoised = x_denoised - z_sr
-            self.hook_guidance = None
+            self.hook_guidance = None; self.modulation = None
         
         output_image = (self.vae_fix.decode(x_denoised / self.vae_fix.config.scaling_factor).sample).clamp(-1, 1)
 
@@ -475,18 +475,19 @@ class DiffCSR_eval(nn.Module):
     def register_hook_unet(self):
         #  register Hook
         self.norm1 = Normalize2(in_channels=1280); self.norm2 = Normalize2(in_channels=640); self.norm3 = Normalize2(in_channels=320)
+        self.hook_guidance = None; self.modulation = None
+        
         if len(self.unet.up_blocks) == 4:
-            self.hook_guidance = None
             self.unet.up_blocks[1].register_forward_hook(self.hook_guidance_for_sr)
             self.unet.up_blocks[2].register_forward_hook(self.hook_guidance_for_sr)
             self.unet.up_blocks[3].register_forward_hook(self.hook_guidance_for_sr)
         else:
-            self.hook_guidance = None
             self.unet.up_blocks[-1].register_forward_hook(self.hook_guidance_for_sr)
     
     def hook_guidance_for_sr(self, module, args, output):
-        if self.hook_guidance is not None:
-            modulation = self.psm(z_guidance=self.hook_guidance)
+        if self.modulation is not None:
+            modulation = self.modulation
+            
             if output.shape[1] == modulation['scale16'].shape[1]:
                 output_norm = self.norm1(output)
                 modified_output = output_norm * (1 + modulation['scale16']) + modulation['shift16']
@@ -512,15 +513,16 @@ class DiffCSR_eval(nn.Module):
 
         # Two stage csr
         set_weights_and_activate_adapters(self.unet, ["default_encoder_cr", "default_decoder_cr", "default_others_cr"], [1.0, 1.0, 1.0])
-        self.hook_guidance = None
+        self.hook_guidance = None; self.modulation = None
         z_cr = self.unet(encoded_control, self.timesteps1, encoder_hidden_states=prompt_embeds).sample
         x_denoised = encoded_control - z_cr
 
         set_weights_and_activate_adapters(self.unet, ["default_encoder_sr", "default_decoder_sr", "default_others_sr"], [1.0, 1.0, 1.0])
         self.hook_guidance = x_denoised
+        self.modulation = self.psm(z_guidance=self.hook_guidance)
         z_sr = self.unet(x_denoised, self.timesteps1, encoder_hidden_states=prompt_embeds).sample
         x_denoised = x_denoised - z_sr
-        self.hook_guidance = None
+        self.hook_guidance = None; self.modulation = None
 
         # Decode output
         output_image = self.vae.decode(x_denoised / self.vae.config.scaling_factor).sample.clamp(-1, 1)
